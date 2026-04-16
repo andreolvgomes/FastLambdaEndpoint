@@ -2,7 +2,7 @@ using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 using Infra.Lambda;
 using Infra.Repositories;
-using LambdaFunctionFast;
+using FastLambdaEndpoint;
 using System.ComponentModel.DataAnnotations;
 
 namespace AWSLambda1;

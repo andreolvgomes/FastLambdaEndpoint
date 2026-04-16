@@ -1,6 +1,6 @@
 ﻿using CrossCutting.IoC;
-using LambdaFunctionFast;
-using LambdaFunctionFast.Impl;
+using FastLambdaEndpoint;
+using FastLambdaEndpoint.Impl;
 
 namespace Infra.Lambda;
 

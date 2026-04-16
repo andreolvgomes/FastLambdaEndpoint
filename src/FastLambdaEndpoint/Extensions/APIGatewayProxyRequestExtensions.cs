@@ -3,7 +3,7 @@ using Newtonsoft.Json.Serialization;
 using System.ComponentModel;
 using Newtonsoft.Json;
 
-namespace LambdaFunctionFast;
+namespace FastLambdaEndpoint;
 
 public static class APIGatewayProxyRequestExtensions
 {

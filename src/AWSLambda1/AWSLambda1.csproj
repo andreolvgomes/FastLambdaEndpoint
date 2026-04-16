@@ -18,6 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Infra.Lambda\Infra.Lambda.csproj" />
     <ProjectReference Include="..\Infra.Repositories\Infra.Repositories.csproj" />
-    <ProjectReference Include="..\LambdaFunctionFast\LambdaFunctionFast.csproj" />
+    <ProjectReference Include="..\FastLambdaEndpoint\FastLambdaEndpoint.csproj" />
   </ItemGroup>
 </Project>

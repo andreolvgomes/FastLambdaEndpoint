@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CrossCutting.IoC\CrossCutting.IoC.csproj" />
-    <ProjectReference Include="..\LambdaFunctionFast\LambdaFunctionFast.csproj" />
+    <ProjectReference Include="..\FastLambdaEndpoint\FastLambdaEndpoint.csproj" />
   </ItemGroup>
 
 </Project>

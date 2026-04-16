@@ -1,13 +1,13 @@
 ﻿using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
-using LambdaFunctionFast.Middleware;
+using FastLambdaEndpoint.Middleware;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 
-namespace LambdaFunctionFast.Impl;
+namespace FastLambdaEndpoint.Impl;
 
 public abstract class FunctionImpl<THandler, TRequest> : FunctionBase
     where THandler : IHandler<TRequest>
