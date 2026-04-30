@@ -31,3 +31,9 @@ public abstract class FunctionWithoutRequest<THandler, TResponse> : FunctionWith
 {
     protected FunctionWithoutRequest() : base(StartUp.ServiceCollection()) { }
 }
+
+public abstract class FunctionAPIGatewayProxyRequest<THandler> : FunctionAPIGatewayProxyRequestImpl<THandler>
+    where THandler : IHandlerAPIGatewayProxyRequest
+{
+    protected FunctionAPIGatewayProxyRequest() : base(StartUp.ServiceCollection()) { }
+}

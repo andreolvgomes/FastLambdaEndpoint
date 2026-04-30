@@ -121,6 +121,28 @@ public abstract class FunctionWithoutRequestImpl<THandler, TResponse> : Function
     }
 }
 
+public abstract class FunctionAPIGatewayProxyRequestImpl<THandler> : FunctionBase
+    where THandler : IHandlerAPIGatewayProxyRequest
+{
+    protected FunctionAPIGatewayProxyRequestImpl(IServiceCollection serviceCollection)
+    {
+        BuildServiceProvider(typeof(THandler), serviceCollection);
+    }
+
+    public async Task<APIGatewayProxyResponse> Run(APIGatewayProxyRequest apiGateway, ILambdaContext context)
+    {
+        using (var scope = CreateScope())
+        {
+            var middlewareRespononse = await RunMiddleware(apiGateway, context);
+            if (middlewareRespononse != null)
+                return ActionResult(middlewareRespononse);
+
+            var func = scope.ServiceProvider.GetRequiredService<THandler>();
+            return await func.Handler(apiGateway, context);
+        }
+    }
+}
+
 public abstract class FunctionBase
 {
     protected IServiceProvider _serviceProvider;

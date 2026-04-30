@@ -25,4 +25,9 @@ namespace FastLambdaEndpoint
     {
         Task<ResponseResult<TResponse>> Handler(APIGatewayProxyRequest apiGateway, ILambdaContext context);
     }
+
+    public interface IHandlerAPIGatewayProxyRequest
+    {
+        Task<APIGatewayProxyResponse> Handler(APIGatewayProxyRequest apiGateway, ILambdaContext context);
+    }
 }
