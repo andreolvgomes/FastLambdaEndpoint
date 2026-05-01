@@ -13,13 +13,15 @@ namespace CrossCutting.IoC
             services.AddScoped<IRepository, Repository>();
 
             // middlewares
+            services.AddScoped<WarmupMiddleware>();
             services.AddScoped<ApiKeyMiddleware>();
             services.AddScoped<LoggingMiddleware>();
 
             // pipeline
-            services.AddSingleton(sp =>
+            services.AddScoped(sp =>
             {
                 return new MiddlewarePipeline(sp)
+                    .Use<WarmupMiddleware>()
                     .Use<LoggingMiddleware>()
                     .Use<ApiKeyMiddleware>();
             });

@@ -22,7 +22,7 @@ public abstract class FunctionImpl<THandler, TRequest> : FunctionBase
     {
         using (var scope = CreateScope())
         {
-            var middlewareRespononse = await RunMiddleware(apiGateway, context);
+            var middlewareRespononse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
             if (middlewareRespononse != null)
                 return ActionResult(middlewareRespononse);
 
@@ -54,7 +54,7 @@ public abstract class FunctionImpl<THandler, TRequest, TResponse> : FunctionBase
     {
         using (var scope = CreateScope())
         {
-            var middlewareRespononse = await RunMiddleware(apiGateway, context);
+            var middlewareRespononse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
             if (middlewareRespononse != null)
                 return ActionResult(middlewareRespononse);
 
@@ -84,7 +84,7 @@ public abstract class FunctionWithoutRequestImpl<THandler> : FunctionBase
     {
         using (var scope = CreateScope())
         {
-            var middlewareRespononse = await RunMiddleware(apiGateway, context);
+            var middlewareRespononse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
             if (middlewareRespononse != null)
                 return ActionResult(middlewareRespononse);
 
@@ -109,7 +109,7 @@ public abstract class FunctionWithoutRequestImpl<THandler, TResponse> : Function
     {
         using (var scope = CreateScope())
         {
-            var middlewareRespononse = await RunMiddleware(apiGateway, context);
+            var middlewareRespononse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
             if (middlewareRespononse != null)
                 return ActionResult(middlewareRespononse);
 
@@ -133,7 +133,7 @@ public abstract class FunctionAPIGatewayProxyRequestImpl<THandler> : FunctionBas
     {
         using (var scope = CreateScope())
         {
-            var middlewareRespononse = await RunMiddleware(apiGateway, context);
+            var middlewareRespononse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
             if (middlewareRespononse != null)
                 return ActionResult(middlewareRespononse);
 
@@ -176,9 +176,9 @@ public abstract class FunctionBase
         return scope;
     }
 
-    protected async Task<ResponseResult<object>> RunMiddleware(APIGatewayProxyRequest apiGateway, ILambdaContext context)
+    protected async Task<ResponseResult<object>> RunMiddleware(IServiceProvider serviceProvider, APIGatewayProxyRequest apiGateway, ILambdaContext context)
     {
-        var pipeline = _serviceProvider.GetRequiredService<MiddlewarePipeline>();
+        var pipeline = serviceProvider.GetRequiredService<MiddlewarePipeline>();
         return await pipeline.ExecuteAsync(apiGateway, context);
     }
 

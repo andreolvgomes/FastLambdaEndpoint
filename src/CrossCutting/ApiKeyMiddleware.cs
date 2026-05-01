@@ -19,6 +19,17 @@ public class ApiKeyMiddleware : ILambdaMiddleware
     }
 }
 
+public class WarmupMiddleware : ILambdaMiddleware
+{
+    public async Task<ResponseResult<object>> InvokeAsync(APIGatewayProxyRequest request, ILambdaContext context, Func<Task<ResponseResult<object>>> next)
+    {
+        if (request?.Headers?.TryGetValue("x-warmup", out var value) == true && value == "1")
+            return new Success();
+
+        return await next();
+    }
+}
+
 public class LoggingMiddleware : ILambdaMiddleware
 {
     public async Task<ResponseResult<object>> InvokeAsync(APIGatewayProxyRequest request, ILambdaContext context, Func<Task<ResponseResult<object>>> next)
