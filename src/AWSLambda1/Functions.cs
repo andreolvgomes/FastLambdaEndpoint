@@ -1,8 +1,8 @@
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
+using FastLambdaEndpoint;
 using Infra.Lambda;
 using Infra.Repositories;
-using FastLambdaEndpoint;
 using System.ComponentModel.DataAnnotations;
 
 namespace AWSLambda1;
