@@ -22,9 +22,9 @@ public abstract class FunctionImpl<THandler, TRequest> : FunctionBase
     {
         using (var scope = CreateScope())
         {
-            var middlewareRespononse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
-            if (middlewareRespononse != null)
-                return ActionResult(middlewareRespononse);
+            var middlewareResponse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
+            if (middlewareResponse != null)
+                return ActionResult(middlewareResponse);
 
             var request = DeserializeObject<TRequest>(apiGateway.Body);
 
@@ -54,9 +54,9 @@ public abstract class FunctionImpl<THandler, TRequest, TResponse> : FunctionBase
     {
         using (var scope = CreateScope())
         {
-            var middlewareRespononse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
-            if (middlewareRespononse != null)
-                return ActionResult(middlewareRespononse);
+            var middlewareResponse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
+            if (middlewareResponse != null)
+                return ActionResult(middlewareResponse);
 
             var request = DeserializeObject<TRequest>(apiGateway.Body);
 
@@ -84,9 +84,9 @@ public abstract class FunctionWithoutRequestImpl<THandler> : FunctionBase
     {
         using (var scope = CreateScope())
         {
-            var middlewareRespononse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
-            if (middlewareRespononse != null)
-                return ActionResult(middlewareRespononse);
+            var middlewareResponse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
+            if (middlewareResponse != null)
+                return ActionResult(middlewareResponse);
 
             var func = scope.ServiceProvider.GetRequiredService<THandler>();
             var response = await func.Handler(apiGateway, context);
@@ -109,9 +109,9 @@ public abstract class FunctionWithoutRequestImpl<THandler, TResponse> : Function
     {
         using (var scope = CreateScope())
         {
-            var middlewareRespononse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
-            if (middlewareRespononse != null)
-                return ActionResult(middlewareRespononse);
+            var middlewareResponse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
+            if (middlewareResponse != null)
+                return ActionResult(middlewareResponse);
 
             var func = scope.ServiceProvider.GetRequiredService<THandler>();
             var response = await func.Handler(apiGateway, context);
@@ -133,9 +133,9 @@ public abstract class FunctionAPIGatewayProxyRequestImpl<THandler> : FunctionBas
     {
         using (var scope = CreateScope())
         {
-            var middlewareRespononse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
-            if (middlewareRespononse != null)
-                return ActionResult(middlewareRespononse);
+            var middlewareResponse = await RunMiddleware(scope.ServiceProvider, apiGateway, context);
+            if (middlewareResponse != null)
+                return ActionResult(middlewareResponse);
 
             var func = scope.ServiceProvider.GetRequiredService<THandler>();
             return await func.Handler(apiGateway, context);

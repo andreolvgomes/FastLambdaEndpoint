@@ -18,6 +18,7 @@ public class ProdutosResponse
     public string Name { get; set; }
 }
 
+[LambdaRouteAttribute("POST", "/proxy/produtos")]
 public class ProdutosCreateFunction : Function<ProdutosCreateFunctionHandler, ProdutosRequest, ProdutosResponse> { }
 public class ProdutosCreateFunctionHandler : IHandler<ProdutosRequest, ProdutosResponse>
 {
