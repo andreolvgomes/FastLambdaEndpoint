@@ -10,6 +10,9 @@ namespace CrossCutting.IoC
         {
             var services = new ServiceCollection();
 
+            services.AddMemoryCache();
+            services.AddSingleton<ICacheService, MemoryCacheService>();
+
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<RequestContext>();
 
