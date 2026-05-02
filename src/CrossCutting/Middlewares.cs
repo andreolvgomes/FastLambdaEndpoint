@@ -26,6 +26,14 @@ public class ApiKeyMiddleware : ILambdaMiddleware
     }
 }
 
+public class TenantBootstrapMiddleware : ILambdaMiddleware
+{
+    public async Task<ResponseResult<object>> InvokeAsync(APIGatewayProxyRequest request, ILambdaContext context, Func<Task<ResponseResult<object>>> next)
+    {
+        return await next();
+    }
+}
+
 public class WarmupMiddleware : ILambdaMiddleware
 {
     public async Task<ResponseResult<object>> InvokeAsync(APIGatewayProxyRequest request, ILambdaContext context, Func<Task<ResponseResult<object>>> next)
