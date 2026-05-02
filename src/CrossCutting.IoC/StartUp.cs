@@ -11,6 +11,7 @@ namespace CrossCutting.IoC
             var services = new ServiceCollection();
 
             services.AddScoped<IRepository, Repository>();
+            services.AddScoped<RequestContext>();
 
             // middlewares
             services.AddScoped<WarmupMiddleware>();
@@ -22,8 +23,8 @@ namespace CrossCutting.IoC
             {
                 return new MiddlewarePipeline(sp)
                     .Use<WarmupMiddleware>()
-                    .Use<LoggingMiddleware>()
-                    .Use<ApiKeyMiddleware>();
+                    .Use<ApiKeyMiddleware>()
+                    .Use<LoggingMiddleware>();
             });
 
             return services;

@@ -7,6 +7,13 @@ namespace CrossCutting;
 
 public class ApiKeyMiddleware : ILambdaMiddleware
 {
+    private readonly RequestContext _context;
+
+    public ApiKeyMiddleware(RequestContext context)
+    {
+        _context = context;
+    }
+
     public async Task<ResponseResult<object>> InvokeAsync(APIGatewayProxyRequest request, ILambdaContext context, Func<Task<ResponseResult<object>>> next)
     {
         //if (request.Headers is null)

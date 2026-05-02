@@ -22,17 +22,21 @@ namespace FastLambdaEndpoint.Middleware
 
         public async Task<ResponseResult<object>> ExecuteAsync(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            Func<Task<ResponseResult<object>>> pipeline = () => Task.FromResult<ResponseResult<object>>(null);
+            return await ExecuteStep(0, request, context);
+        }
 
-            foreach (var middlewareType in _middlewareTypes)
-            {
-                var middleware = (ILambdaMiddleware)_serviceProvider.GetRequiredService(middlewareType);
+        private async Task<ResponseResult<object>> ExecuteStep(int index, APIGatewayProxyRequest request, ILambdaContext context)
+        {
+            if (index >= _middlewareTypes.Count)
+                return null;
 
-                var next = pipeline;
-                pipeline = async () => await middleware.InvokeAsync(request, context, next);
-            }
+            var type = _middlewareTypes[index];
 
-            return await pipeline();
+            var middleware = (ILambdaMiddleware)_serviceProvider.GetRequiredService(type);
+
+            // executa atual e entrega função next()
+            return await middleware.InvokeAsync(request, context, 
+                () => ExecuteStep(index + 1, request, context));
         }
     }
 }
