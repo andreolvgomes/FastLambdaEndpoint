@@ -1,6 +1,6 @@
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
-using FastLambdaEndpoint;
+using FastLambda;
 using Infra.Lambda;
 using Infra.Repositories;
 using System.ComponentModel.DataAnnotations;
@@ -38,7 +38,7 @@ public class ProdutosCreateFunctionHandler : IHandler<ProdutosRequest, ProdutosR
     }
 }
 
-public class ProdutosGetFunction : FunctionWithoutRequest<ProdutosGetFunctionHandler, ProdutosResponse> { }
+public class ProdutosGetFunction : FunctionNoRequest<ProdutosGetFunctionHandler, ProdutosResponse> { }
 public class ProdutosGetFunctionHandler : IHandlerWithoutRequest<ProdutosResponse>
 {
     private readonly IRepository _repository;
@@ -57,7 +57,7 @@ public class ProdutosGetFunctionHandler : IHandlerWithoutRequest<ProdutosRespons
     }
 }
 
-public class GetAllProdutosFunction : FunctionWithoutRequest<GetAllProdutosHandler, List<ProdutosResponse>> { }
+public class GetAllProdutosFunction : FunctionNoRequest<GetAllProdutosHandler, List<ProdutosResponse>> { }
 public class GetAllProdutosHandler : IHandlerWithoutRequest<List<ProdutosResponse>>
 {
     private readonly IRepository _repository;

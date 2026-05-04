@@ -2,7 +2,7 @@
 using Amazon.Lambda.Core;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FastLambdaEndpoint.Middleware
+namespace FastLambda.Middleware
 {
     public class MiddlewarePipeline
     {

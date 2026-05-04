@@ -1,4 +1,4 @@
-﻿namespace FastLambdaEndpoint
+﻿namespace FastLambda
 {
     public class ResponseResult<T>
     {

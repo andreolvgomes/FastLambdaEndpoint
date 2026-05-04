@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AWSLambda1\AWSLambda1.csproj" />
-    <ProjectReference Include="..\FastLambdaEndpoint\FastLambdaEndpoint.csproj" />
+    <ProjectReference Include="..\FastLambda\FastLambda.csproj" />
   </ItemGroup>
 
 </Project>

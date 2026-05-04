@@ -16,7 +16,7 @@
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.4.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FastLambdaEndpoint\FastLambdaEndpoint.csproj" />
+    <ProjectReference Include="..\FastLambda\FastLambda.csproj" />
     <ProjectReference Include="..\Infra.Lambda\Infra.Lambda.csproj" />
     <ProjectReference Include="..\Infra.Repositories\Infra.Repositories.csproj" />
   </ItemGroup>

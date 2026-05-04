@@ -1,19 +1,19 @@
 ﻿using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
-using FastLambdaEndpoint.Middleware;
+using FastLambda.Middleware;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 
-namespace FastLambdaEndpoint.Impl;
+namespace FastLambda.Impl;
 
-public abstract class FunctionImpl<THandler, TRequest> : FunctionBase
+public abstract class LambdaFunction<THandler, TRequest> : LambdaFunctionBase
     where THandler : IHandler<TRequest>
     where TRequest : class, new()
 {
-    protected FunctionImpl(IServiceCollection serviceCollection)
+    protected LambdaFunction(IServiceCollection serviceCollection)
     {
         BuildServiceProvider(typeof(THandler), serviceCollection);
     }
@@ -40,12 +40,12 @@ public abstract class FunctionImpl<THandler, TRequest> : FunctionBase
     }
 }
 
-public abstract class FunctionImpl<THandler, TRequest, TResponse> : FunctionBase
+public abstract class LambdaFunction<THandler, TRequest, TResponse> : LambdaFunctionBase
     where THandler : IHandler<TRequest, TResponse>
     where TRequest : class, new()
     where TResponse : class, new()
 {
-    protected FunctionImpl(IServiceCollection serviceCollection)
+    protected LambdaFunction(IServiceCollection serviceCollection)
     {
         BuildServiceProvider(typeof(THandler), serviceCollection);
     }
@@ -72,10 +72,10 @@ public abstract class FunctionImpl<THandler, TRequest, TResponse> : FunctionBase
     }
 }
 
-public abstract class FunctionWithoutRequestImpl<THandler> : FunctionBase
+public abstract class LambdaFunctionNoRequest<THandler> : LambdaFunctionBase
     where THandler : IHandlerWithoutRequest
 {
-    protected FunctionWithoutRequestImpl(IServiceCollection serviceCollection)
+    protected LambdaFunctionNoRequest(IServiceCollection serviceCollection)
     {
         BuildServiceProvider(typeof(THandler), serviceCollection);
     }
@@ -96,11 +96,11 @@ public abstract class FunctionWithoutRequestImpl<THandler> : FunctionBase
     }
 }
 
-public abstract class FunctionWithoutRequestImpl<THandler, TResponse> : FunctionBase
+public abstract class LambdaFunctionNoRequest<THandler, TResponse> : LambdaFunctionBase
     where THandler : IHandlerWithoutRequest<TResponse>
     where TResponse : class, new()
 {
-    protected FunctionWithoutRequestImpl(IServiceCollection serviceCollection)
+    protected LambdaFunctionNoRequest(IServiceCollection serviceCollection)
     {
         BuildServiceProvider(typeof(THandler), serviceCollection);
     }
@@ -121,10 +121,10 @@ public abstract class FunctionWithoutRequestImpl<THandler, TResponse> : Function
     }
 }
 
-public abstract class FunctionAPIGatewayProxyRequestImpl<THandler> : FunctionBase
+public abstract class LambdaProxyFunction<THandler> : LambdaFunctionBase
     where THandler : IHandlerAPIGatewayProxyRequest
 {
-    protected FunctionAPIGatewayProxyRequestImpl(IServiceCollection serviceCollection)
+    protected LambdaProxyFunction(IServiceCollection serviceCollection)
     {
         BuildServiceProvider(typeof(THandler), serviceCollection);
     }
@@ -143,7 +143,7 @@ public abstract class FunctionAPIGatewayProxyRequestImpl<THandler> : FunctionBas
     }
 }
 
-public abstract class FunctionBase
+public abstract class LambdaFunctionBase
 {
     protected IServiceProvider _serviceProvider;
 

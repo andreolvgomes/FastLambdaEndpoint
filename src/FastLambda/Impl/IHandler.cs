@@ -1,7 +1,7 @@
 ﻿using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 
-namespace FastLambdaEndpoint
+namespace FastLambda
 {
     public interface IHandler<TRequest>
         where TRequest : class, new()

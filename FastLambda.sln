@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting", "src\CrossCu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Repositories", "src\Infra.Repositories\Infra.Repositories.csproj", "{8135EE7B-6293-4161-968F-65E3324C9444}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastLambdaEndpoint", "src\FastLambdaEndpoint\FastLambdaEndpoint.csproj", "{02E5CC23-31ED-AAD3-2808-5BA767E7782F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastLambda", "src\FastLambda\FastLambda.csproj", "{02E5CC23-31ED-AAD3-2808-5BA767E7782F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

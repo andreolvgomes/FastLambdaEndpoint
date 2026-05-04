@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using FastLambdaEndpoint.Middleware;
+using FastLambda.Middleware;
 using Infra.Repositories;
 
 namespace CrossCutting.IoC

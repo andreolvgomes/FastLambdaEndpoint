@@ -1,17 +1,17 @@
 ﻿using CrossCutting.IoC;
-using FastLambdaEndpoint;
-using FastLambdaEndpoint.Impl;
+using FastLambda;
+using FastLambda.Impl;
 
 namespace Infra.Lambda;
 
-public abstract class Function<THandler, TRequest> : FunctionImpl<THandler, TRequest>
+public abstract class Function<THandler, TRequest> : LambdaFunction<THandler, TRequest>
         where THandler : IHandler<TRequest>
         where TRequest : class, new()
 {
     protected Function() : base(StartUp.ServiceCollection()) { }
 }
 
-public abstract class Function<THandler, TRequest, TResponse> : FunctionImpl<THandler, TRequest, TResponse>
+public abstract class Function<THandler, TRequest, TResponse> : LambdaFunction<THandler, TRequest, TResponse>
     where THandler : IHandler<TRequest, TResponse>
     where TRequest : class, new()
     where TResponse : class, new()
@@ -19,21 +19,21 @@ public abstract class Function<THandler, TRequest, TResponse> : FunctionImpl<THa
     protected Function() : base(StartUp.ServiceCollection()) { }
 }
 
-public class FunctionWithoutRequest<THandler> : FunctionWithoutRequestImpl<THandler>
+public class FunctionNoRequest<THandler> : LambdaFunctionNoRequest<THandler>
     where THandler : IHandlerWithoutRequest
 {
-    protected FunctionWithoutRequest() : base(StartUp.ServiceCollection()) { }
+    protected FunctionNoRequest() : base(StartUp.ServiceCollection()) { }
 }
 
-public abstract class FunctionWithoutRequest<THandler, TResponse> : FunctionWithoutRequestImpl<THandler, TResponse>
+public abstract class FunctionNoRequest<THandler, TResponse> : LambdaFunctionNoRequest<THandler, TResponse>
     where THandler : IHandlerWithoutRequest<TResponse>
     where TResponse : class, new()
 {
-    protected FunctionWithoutRequest() : base(StartUp.ServiceCollection()) { }
+    protected FunctionNoRequest() : base(StartUp.ServiceCollection()) { }
 }
 
-public abstract class FunctionAPIGatewayProxyRequest<THandler> : FunctionAPIGatewayProxyRequestImpl<THandler>
+public abstract class FunctionProxy<THandler> : LambdaProxyFunction<THandler>
     where THandler : IHandlerAPIGatewayProxyRequest
 {
-    protected FunctionAPIGatewayProxyRequest() : base(StartUp.ServiceCollection()) { }
+    protected FunctionProxy() : base(StartUp.ServiceCollection()) { }
 }

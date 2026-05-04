@@ -1,7 +1,7 @@
 ﻿using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 
-namespace FastLambdaEndpoint.Middleware
+namespace FastLambda.Middleware
 {
     public interface ILambdaMiddleware
     {
