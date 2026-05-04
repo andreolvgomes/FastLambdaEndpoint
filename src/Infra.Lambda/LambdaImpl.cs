@@ -32,7 +32,7 @@ public abstract class FunctionNoRequest<THandler, TResponse> : LambdaFunctionNoR
     protected FunctionNoRequest() : base(StartUp.ServiceCollection()) { }
 }
 
-public abstract class FunctionProxy<THandler> : LambdaProxyFunction<THandler>
+public abstract class FunctionProxy<THandler> : LambdaFunctionProxy<THandler>
     where THandler : IHandlerAPIGatewayProxyRequest
 {
     protected FunctionProxy() : base(StartUp.ServiceCollection()) { }

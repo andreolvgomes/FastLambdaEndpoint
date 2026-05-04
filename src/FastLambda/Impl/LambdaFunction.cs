@@ -121,10 +121,10 @@ public abstract class LambdaFunctionNoRequest<THandler, TResponse> : LambdaFunct
     }
 }
 
-public abstract class LambdaProxyFunction<THandler> : LambdaFunctionBase
+public abstract class LambdaFunctionProxy<THandler> : LambdaFunctionBase
     where THandler : IHandlerAPIGatewayProxyRequest
 {
-    protected LambdaProxyFunction(IServiceCollection serviceCollection)
+    protected LambdaFunctionProxy(IServiceCollection serviceCollection)
     {
         BuildServiceProvider(typeof(THandler), serviceCollection);
     }
