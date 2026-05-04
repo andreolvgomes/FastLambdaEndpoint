@@ -15,18 +15,18 @@ namespace FastLambda
         Task<ResponseResult<TResponse>> Handler(TRequest request, APIGatewayProxyRequest apiGateway, ILambdaContext context);
     }
 
-    public interface IHandlerWithoutRequest
+    public interface IHandlerNoRequest
     {
         Task<ResponseResult<Response>> Handler(APIGatewayProxyRequest apiGateway, ILambdaContext context);
     }
 
-    public interface IHandlerWithoutRequest<TResponse>
+    public interface IHandlerNoRequest<TResponse>
         where TResponse : class, new()
     {
         Task<ResponseResult<TResponse>> Handler(APIGatewayProxyRequest apiGateway, ILambdaContext context);
     }
 
-    public interface IHandlerAPIGatewayProxyRequest
+    public interface IHandlerProxyRequest
     {
         Task<APIGatewayProxyResponse> Handler(APIGatewayProxyRequest apiGateway, ILambdaContext context);
     }

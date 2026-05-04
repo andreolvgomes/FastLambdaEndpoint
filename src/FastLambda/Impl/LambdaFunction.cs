@@ -73,7 +73,7 @@ public abstract class LambdaFunction<THandler, TRequest, TResponse> : LambdaFunc
 }
 
 public abstract class LambdaFunctionNoRequest<THandler> : LambdaFunctionBase
-    where THandler : IHandlerWithoutRequest
+    where THandler : IHandlerNoRequest
 {
     protected LambdaFunctionNoRequest(IServiceCollection serviceCollection)
     {
@@ -97,7 +97,7 @@ public abstract class LambdaFunctionNoRequest<THandler> : LambdaFunctionBase
 }
 
 public abstract class LambdaFunctionNoRequest<THandler, TResponse> : LambdaFunctionBase
-    where THandler : IHandlerWithoutRequest<TResponse>
+    where THandler : IHandlerNoRequest<TResponse>
     where TResponse : class, new()
 {
     protected LambdaFunctionNoRequest(IServiceCollection serviceCollection)
@@ -122,7 +122,7 @@ public abstract class LambdaFunctionNoRequest<THandler, TResponse> : LambdaFunct
 }
 
 public abstract class LambdaFunctionProxy<THandler> : LambdaFunctionBase
-    where THandler : IHandlerAPIGatewayProxyRequest
+    where THandler : IHandlerProxyRequest
 {
     protected LambdaFunctionProxy(IServiceCollection serviceCollection)
     {

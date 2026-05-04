@@ -20,20 +20,20 @@ public abstract class Function<THandler, TRequest, TResponse> : LambdaFunction<T
 }
 
 public class FunctionNoRequest<THandler> : LambdaFunctionNoRequest<THandler>
-    where THandler : IHandlerWithoutRequest
+    where THandler : IHandlerNoRequest
 {
     protected FunctionNoRequest() : base(StartUp.ServiceCollection()) { }
 }
 
 public abstract class FunctionNoRequest<THandler, TResponse> : LambdaFunctionNoRequest<THandler, TResponse>
-    where THandler : IHandlerWithoutRequest<TResponse>
+    where THandler : IHandlerNoRequest<TResponse>
     where TResponse : class, new()
 {
     protected FunctionNoRequest() : base(StartUp.ServiceCollection()) { }
 }
 
 public abstract class FunctionProxy<THandler> : LambdaFunctionProxy<THandler>
-    where THandler : IHandlerAPIGatewayProxyRequest
+    where THandler : IHandlerProxyRequest
 {
     protected FunctionProxy() : base(StartUp.ServiceCollection()) { }
 }

@@ -39,7 +39,7 @@ public class ProdutosCreateFunctionHandler : IHandler<ProdutosRequest, ProdutosR
 }
 
 public class ProdutosGetFunction : FunctionNoRequest<ProdutosGetFunctionHandler, ProdutosResponse> { }
-public class ProdutosGetFunctionHandler : IHandlerWithoutRequest<ProdutosResponse>
+public class ProdutosGetFunctionHandler : IHandlerNoRequest<ProdutosResponse>
 {
     private readonly IRepository _repository;
 
@@ -58,7 +58,7 @@ public class ProdutosGetFunctionHandler : IHandlerWithoutRequest<ProdutosRespons
 }
 
 public class GetAllProdutosFunction : FunctionNoRequest<GetAllProdutosHandler, List<ProdutosResponse>> { }
-public class GetAllProdutosHandler : IHandlerWithoutRequest<List<ProdutosResponse>>
+public class GetAllProdutosHandler : IHandlerNoRequest<List<ProdutosResponse>>
 {
     private readonly IRepository _repository;
 
