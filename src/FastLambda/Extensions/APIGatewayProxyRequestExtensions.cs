@@ -12,7 +12,7 @@ public static class APIGatewayProxyRequestExtensions
     /// </summary>
     /// <param name="proxyRequest"></param>
     /// <returns></returns>
-    public static string XApiKey(this APIGatewayProxyRequest proxyRequest)
+    public static string ApiKey(this APIGatewayProxyRequest proxyRequest)
     {
         proxyRequest.Headers.TryGetValue("x-api-key", out string result);
         return result;
@@ -23,7 +23,7 @@ public static class APIGatewayProxyRequestExtensions
     /// </summary>
     /// <param name="proxyRequest"></param>
     /// <returns></returns>
-    public static string XClientId(this APIGatewayProxyRequest proxyRequest)
+    public static string ClientId(this APIGatewayProxyRequest proxyRequest)
     {
         proxyRequest.Headers.TryGetValue("x-client-id", out string result);
         return result;

@@ -11,7 +11,6 @@ namespace FastLambda.Impl;
 
 public abstract class LambdaFunction<THandler, TRequest> : LambdaFunctionBase
     where THandler : IHandler<TRequest>
-    where TRequest : class, new()
 {
     protected LambdaFunction(IServiceCollection serviceCollection)
     {
@@ -42,8 +41,6 @@ public abstract class LambdaFunction<THandler, TRequest> : LambdaFunctionBase
 
 public abstract class LambdaFunction<THandler, TRequest, TResponse> : LambdaFunctionBase
     where THandler : IHandler<TRequest, TResponse>
-    where TRequest : class, new()
-    where TResponse : class, new()
 {
     protected LambdaFunction(IServiceCollection serviceCollection)
     {
@@ -98,7 +95,6 @@ public abstract class LambdaFunctionNoRequest<THandler> : LambdaFunctionBase
 
 public abstract class LambdaFunctionNoRequest<THandler, TResponse> : LambdaFunctionBase
     where THandler : IHandlerNoRequest<TResponse>
-    where TResponse : class, new()
 {
     protected LambdaFunctionNoRequest(IServiceCollection serviceCollection)
     {
@@ -145,12 +141,15 @@ public abstract class LambdaFunctionProxy<THandler> : LambdaFunctionBase
 
 public abstract class LambdaFunctionBase
 {
-    protected IServiceProvider _serviceProvider;
+    protected static IServiceProvider _serviceProvider;
 
     public void BuildServiceProvider(Type functionImpl, IServiceCollection serviceCollection)
     {
-        serviceCollection.AddScoped(functionImpl);
-        _serviceProvider = serviceCollection.BuildServiceProvider();
+        if (_serviceProvider is null)
+        {
+            serviceCollection.AddScoped(functionImpl);
+            _serviceProvider = serviceCollection.BuildServiceProvider();
+        }
     }
 
     public APIGatewayProxyResponse ActionResult<T>(ResponseResult<T> result)
