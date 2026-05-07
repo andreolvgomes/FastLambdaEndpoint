@@ -177,7 +177,10 @@ public abstract class LambdaFunctionBase
 
     protected async Task<ResponseResult<object>> RunMiddleware(IServiceProvider serviceProvider, APIGatewayProxyRequest apiGateway, ILambdaContext context)
     {
-        var pipeline = serviceProvider.GetRequiredService<MiddlewarePipeline>();
+        var pipeline = serviceProvider.GetService<MiddlewarePipeline>();
+        if (pipeline is null)
+            return null;
+
         return await pipeline.ExecuteAsync(apiGateway, context);
     }
 

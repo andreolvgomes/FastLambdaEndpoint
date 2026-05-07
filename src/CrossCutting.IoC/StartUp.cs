@@ -22,13 +22,13 @@ namespace CrossCutting.IoC
             services.AddScoped<LoggingMiddleware>();
 
             // pipeline
-            services.AddScoped(sp =>
-            {
-                return new MiddlewarePipeline(sp)
-                    .Use<WarmupMiddleware>()
-                    .Use<ApiKeyMiddleware>()
-                    .Use<LoggingMiddleware>();
-            });
+            //services.AddScoped(sp =>
+            //{
+            //    return new MiddlewarePipeline(sp)
+            //        .Use<WarmupMiddleware>()
+            //        .Use<ApiKeyMiddleware>()
+            //        .Use<LoggingMiddleware>();
+            //});
 
             return services;
         }
