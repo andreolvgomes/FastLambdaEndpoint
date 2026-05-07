@@ -71,6 +71,7 @@
     public record struct Unauthorized
     {
         public string Message { get; set; }
+
         public Unauthorized(string message = "")
         {
             Message = message;
