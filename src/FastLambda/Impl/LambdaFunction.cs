@@ -4,6 +4,7 @@ using FastLambda.Middleware;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Collections.Concurrent;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 
@@ -142,14 +143,18 @@ public abstract class LambdaFunctionProxyRequest<THandler> : LambdaFunctionBase
 public abstract class LambdaFunctionBase
 {
     protected static IServiceProvider _serviceProvider;
+    /// <summary>
+    /// Para teste local com ApiGateway
+    /// </summary>
+    private static readonly ConcurrentDictionary<Type, IServiceProvider> _providers = new();
 
     public void BuildServiceProvider(Type functionImpl, IServiceCollection serviceCollection)
     {
-        if (_serviceProvider is null)
+        _serviceProvider = _providers.GetOrAdd(functionImpl, _ =>
         {
             serviceCollection.AddScoped(functionImpl);
-            _serviceProvider = serviceCollection.BuildServiceProvider();
-        }
+            return serviceCollection.BuildServiceProvider();
+        });
     }
 
     public APIGatewayProxyResponse ActionResult<T>(ResponseResult<T> result)
