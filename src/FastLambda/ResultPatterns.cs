@@ -32,6 +32,9 @@
         public static ResponseResult<T> Ok(Success response) => new ResponseResult<T>(default, new List<string>()) { HttpStatus = response };
         public static implicit operator ResponseResult<T>(Success response) => Ok(response);
 
+        public static ResponseResult<T> NoContent(NoContent response) => new ResponseResult<T>(default, new List<string>()) { HttpStatus = response };
+        public static implicit operator ResponseResult<T>(NoContent response) => NoContent(response);
+
         public static ResponseResult<T> Created(Created response) => new ResponseResult<T>(default, new List<string>()) { HttpStatus = response };
         public static implicit operator ResponseResult<T>(Created response) => Created(response);
 
@@ -82,6 +85,7 @@
     public readonly record struct Created;
     public readonly record struct Deleted;
     public readonly record struct Updated;
+    public readonly record struct NoContent;
     public readonly record struct Response;
 
     public static class Result
@@ -93,6 +97,7 @@
         public static Unauthorized Unauthorized => new Unauthorized();
         public static BadRequest BadRequest => new BadRequest();
         public static NotFound NotFound => new NotFound();
+        public static NoContent NoContent => new NoContent();
     }
 
     public class ValidationMessage
