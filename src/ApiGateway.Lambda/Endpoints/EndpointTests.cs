@@ -1,7 +1,7 @@
 ﻿using Amazon.Lambda.TestUtilities;
 using ApiGateway.Lambda.Extensions;
 using ApiGateway.Lambda.Utils;
-using AWSLambda1;
+using AWSLambda;
 using FastEndpoints;
 using Microsoft.AspNetCore.Authorization;
 

@@ -1,4 +1,4 @@
-using AWSLambda1;
+using AWSLambda;
 using FastEndpoints;
 
 var builder = WebApplication.CreateBuilder(args);

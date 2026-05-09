@@ -5,7 +5,7 @@ using Infra.Lambda;
 using Infra.Repositories;
 using System.ComponentModel.DataAnnotations;
 
-namespace AWSLambda1;
+namespace AWSLambda;
 
 public class ProdutosRequest
 {

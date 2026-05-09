@@ -2,4 +2,4 @@
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
-namespace AWSLambda1;
+namespace AWSLambda;
