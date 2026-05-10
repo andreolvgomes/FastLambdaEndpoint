@@ -3,7 +3,10 @@ using Amazon.Lambda.Core;
 using FastLambda;
 using Infra.Lambda;
 using Infra.Repositories;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace AWSLambda;
 

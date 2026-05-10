@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: API Gateway conectada a Lambda .NET Native AOT
+
+Globals:
+    Function:
+        Timeout: 30
+        MemorySize: 256
+        Architectures: [arm64]
+        Tracing: Active
+        Runtime: dotnet8
+
+Resources:
+    FunctionDefault:
+        Type: AWS::Serverless::Function
+        Properties:
+            FunctionName: FunctionDefault
+            CodeUri: ./src/AWSLambda
+            Handler: AWSLambda::AWSLambda.FunctionDefault::Handler
+            Events:
+                Api:
+                    Type: Api
+                    Properties:
+                        Path: /lambda-default
+                        Method: get
