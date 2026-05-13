@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: API Gateway conectada a Lambda .NET Native AOT
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 256
+    Architectures:
+    - arm64
+    Tracing: Active
+    Runtime: dotnet8
+    Environment:
+      Variables:
+        CONNECTION_STRING: '{{resolve:ssm:/connectionstring}}'
+Resources:
+  FunctionDefault:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: FunctionDefault
+      CodeUri: FunctionDefault
+      Handler: AWSLambda::AWSLambda.FunctionDefault::Handler
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /fastlambda-default
+            Method: get
+    Metadata:
+      SamResourceId: FunctionDefault
+  FunctionDefaultFromDatabase:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: FunctionDefaultFromDatabase
+      CodeUri: FunctionDefaultFromDatabase
+      Handler: AWSLambda::AWSLambda.FunctionDefaultFromDatabase::Handler
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /fastlambda-default-db
+            Method: get
+    Metadata:
+      SamResourceId: FunctionDefaultFromDatabase
+  FunctionFastlambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: FunctionFastlambdaFunction
+      CodeUri: FunctionFastlambdaFunction
+      Handler: AWSLambda::AWSLambda.FunctionFastlambdaFunction::Run
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /fastlambda-fastlambda
+            Method: get
+    Metadata:
+      SamResourceId: FunctionFastlambdaFunction
+  FunctionFastlambdaFromDatabaseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: FunctionFastlambdaFromDatabaseFunction
+      CodeUri: FunctionFastlambdaFromDatabaseFunction
+      Handler: AWSLambda::AWSLambda.FunctionFastlambdaFromDatabaseFunction::Run
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /fastlambda-fastlambda-db
+            Method: get
+    Metadata:
+      SamResourceId: FunctionFastlambdaFromDatabaseFunction

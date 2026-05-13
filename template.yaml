@@ -9,6 +9,9 @@ Globals:
         Architectures: [arm64]
         Tracing: Active
         Runtime: dotnet8
+        Environment:
+            Variables:
+                CONNECTION_STRING: "{{resolve:ssm:/connectionstring}}"
 
 Resources:
     FunctionDefault:
@@ -21,5 +24,44 @@ Resources:
                 Api:
                     Type: Api
                     Properties:
-                        Path: /lambda-default
+                        Path: /fastlambda-default
+                        Method: get
+
+    FunctionDefaultFromDatabase:
+        Type: AWS::Serverless::Function
+        Properties:
+            FunctionName: FunctionDefaultFromDatabase
+            CodeUri: ./src/AWSLambda
+            Handler: AWSLambda::AWSLambda.FunctionDefaultFromDatabase::Handler
+            Events:
+                Api:
+                    Type: Api
+                    Properties:
+                        Path: /fastlambda-default-db
+                        Method: get
+
+    FunctionFastlambdaFunction:
+        Type: AWS::Serverless::Function
+        Properties:
+            FunctionName: FunctionFastlambdaFunction
+            CodeUri: ./src/AWSLambda
+            Handler: AWSLambda::AWSLambda.FunctionFastlambdaFunction::Run
+            Events:
+                Api:
+                    Type: Api
+                    Properties:
+                        Path: /fastlambda-fastlambda
+                        Method: get
+
+    FunctionFastlambdaFromDatabaseFunction:
+        Type: AWS::Serverless::Function
+        Properties:
+            FunctionName: FunctionFastlambdaFromDatabaseFunction
+            CodeUri: ./src/AWSLambda
+            Handler: AWSLambda::AWSLambda.FunctionFastlambdaFromDatabaseFunction::Run
+            Events:
+                Api:
+                    Type: Api
+                    Properties:
+                        Path: /fastlambda-fastlambda-db
                         Method: get
