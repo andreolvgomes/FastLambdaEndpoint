@@ -41,6 +41,9 @@
         public static ResponseResult<T> Deleted(Deleted response) => new ResponseResult<T>(default, new List<string>()) { HttpStatus = response };
         public static implicit operator ResponseResult<T>(Deleted response) => Deleted(response);
 
+        public static ResponseResult<T> Accepted(Accepted response) => new ResponseResult<T>(default, new List<string>()) { HttpStatus = response };
+        public static implicit operator ResponseResult<T>(Accepted response) => Accepted(response);
+
         public static ResponseResult<T> Updated(Updated response) => new ResponseResult<T>(default, new List<string>()) { HttpStatus = response };
         public static implicit operator ResponseResult<T>(Updated response) => Updated(response);
 
@@ -86,6 +89,7 @@
     public readonly record struct Deleted;
     public readonly record struct Updated;
     public readonly record struct NoContent;
+    public readonly record struct Accepted;
     public readonly record struct Response;
 
     public static class Result
@@ -98,6 +102,7 @@
         public static BadRequest BadRequest => new BadRequest();
         public static NotFound NotFound => new NotFound();
         public static NoContent NoContent => new NoContent();
+        public static Accepted Accepted => new Accepted();
     }
 
     public class ValidationMessage

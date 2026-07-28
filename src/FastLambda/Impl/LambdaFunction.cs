@@ -220,6 +220,11 @@ public abstract class LambdaFunctionBase
         return Response(null, HttpStatusCode.NoContent);
     }
 
+    protected APIGatewayProxyResponse Accepted()
+    {
+        return Response(null, HttpStatusCode.Accepted);
+    }
+
     protected APIGatewayProxyResponse Created()
     {
         return Response(null, HttpStatusCode.Created);
