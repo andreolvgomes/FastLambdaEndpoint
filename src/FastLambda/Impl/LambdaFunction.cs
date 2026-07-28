@@ -163,6 +163,7 @@ public abstract class LambdaFunctionBase
         if (result.HttpStatus is Created) return Created();
         if (result.HttpStatus is Deleted) return NoContent();
         if (result.HttpStatus is Updated) return NoContent();
+        if (result.HttpStatus is Accepted) return Accepted();
 
         if (result.HttpStatus is NotFound) return Errors(result.Errors, httpStatusCode: HttpStatusCode.NotFound);
         if (result.HttpStatus is BadRequest) return Errors(result.Errors, httpStatusCode: HttpStatusCode.BadRequest);
